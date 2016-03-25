@@ -1,11 +1,10 @@
-django版本1.9.4<br>
-安装步骤
-virtualenv Search
-cd Search
-source bin/activate
-pip install django
-mkdir Search
-cd Search
-复制代码到这个文件夹
-python manage.py runserver
+安装步骤<br>
+virtualenv Search<br>
+cd Search<br>
+source bin/activate<br>
+pip install django<br>
+mkdir Search<br>
+cd Search<br>
+复制代码到这个文件夹<br>
+python manage.py runserver<br>
 
