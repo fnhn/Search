@@ -1,0 +1,74 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<style type="text/css">
+		body {
+			padding: 5px;
+		}
+		.emptybox {
+			height: 15px;
+			clear: both;
+		}
+	</style>
+	<script type="text/javascript">
+
+		//在搜索结果中增加一条记录
+		function addMessage(title, content) {
+			message_box = $("#message_box");
+			message_box.html(message_box.html() + "<div class=\"col-lg-9\">\
+					<div class=\"panel panel-success\" style=\"margin-bottom:10px;\">\
+				      	<div class=\"panel-heading\">\
+				        	<h3 class=\"panel-title\">" + title + "</h3>\
+				      	</div>\
+				      	<div class=\"panel-body\">" + content + 
+				      	"</div>\
+				    </div>\
+				</div>");
+		}
+
+		//清空搜索结果
+		function clearMessage(message) {
+			message_box = $("#message_box");
+			message_box.html("");
+		}
+
+		//提交信息
+		function submitKeyword() {
+			keyword = $("#keyword").val();
+			$.post("/example_module/function", {
+				keyword: keyword,
+			}).done(function(data) {
+				alert(data);
+			});
+		}
+	</script>
+</head>
+<body>
+	<div class="row">
+  		<div class="col-lg-7">
+  			<form method="POST" action="/app/">
+  				{% csrf_token %}
+	    		<div class="input-group">
+	      			<input type="text" class="form-control" placeholder="输入关键字" id="keyword" name="search_content">
+	      			<span class="input-group-btn">
+	        			<input type="submit" class="btn btn-default" type="button" onclick="submitKeyword()">搜索</input>
+	      			</span>
+	    		</div>
+    		</form>
+  		</div>
+  		<div class="emptybox"></div>
+	</div>
+
+
+	<div class="row" id="message_box">
+	</div>
+	<script type="text/javascript">
+		{% for each_block in blocks %}
+			addMessage("{{each_block.title}}", "{{each_block.content}}");
+		{% endfor %}
+	</script>
+</body>
+</html>
