@@ -5,6 +5,6 @@ source bin/activate<br>
 pip install django<br>
 mkdir Search<br>
 cd Search<br>
-复制代码到这个文件夹<br>
+把代码pull到这个文件夹下<br>
 python manage.py runserver<br>
 
