@@ -1,4 +1,4 @@
-django版本1.9.4
+django版本1.9.4<br>
 安装步骤
 virtualenv Search
 cd Search
